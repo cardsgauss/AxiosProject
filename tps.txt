@@ -1,0 +1,51 @@
+
+//inaerting id to customer
+public int gettId(int aadhar) {
+		int id=0;
+		String sql = "select cust_id from cust1 where aadhar=?";
+		try {
+			p = con.prepareStatement(sql);
+			p.setInt(1, aadhar);
+			rs = p.executeQuery();
+			while(rs.next())
+			{
+				id=rs.getInt("cust_id");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+
+	}
+
+
+//to check aadhar is there in the customer table
+public boolean check(String query) {
+		boolean ans = false;
+		
+
+		try {
+
+			p = con.prepareStatement(query);
+			rs = p.executeQuery();
+			if (rs.next()) {
+				ans=true;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+
+
+
+System.out.println("Enter Aadhar number:");
+		aad = sc.nextInt();
+		String sql = "SELECT * FROM \"cust1\" WHERE aadhar=" + aad;
+
+		// insertion
+		ans = applicationDAO.check(sql);
+
+		}
